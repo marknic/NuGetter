@@ -1,0 +1,33 @@
+<VersionSeed>
+  <!-- ============================================================================================================================== -->
+  <!-- Updated: 7/2011 for Version 1.5.0.0                                                                                            -->
+  <!-- Options:                                                                                                                       -->
+  <!--   Explicit Versions:  1.2.3.4 - Major.Minor.Build.Revision   Example Output Version: 1.2.3.4                                   -->
+  <!--   Partially Explicit Versions:  1.2.J.B - Major.Minor.JulianDate.TfsBuildNumber   Example Output Version: 1.2.11059.5          -->
+  <!--   Date Based Versions:  YYYY.M.D.B - Year.Month.Day.TfsBuildNumber   Example Output Version: 2011.2.28.5                       -->
+  <!--                                                                                                                                -->
+  <!-- Replacement Pattern Symbols:                                                                                                   -->
+  <!--   YYYY : Full current year                                                                                                     -->
+  <!--     YY : Current year (2 digit)                                                                                                -->
+  <!--      M : Current month                                                                                                         -->
+  <!--      D : Current day of the month                                                                                              -->
+  <!--      J : Current date in "Julian" format.  Example: 11027 = January 27, 2011, 11278 = October 5, 2011                          -->
+  <!--      B : TFS Build Number (extracted from the build process)                                                                   -->
+  <!--                                                                                                                                -->
+  <!-- If Solution name is "Default" then those patterns will be used if an exact name match is not found.                            -->
+  <!--                                                                                                                                -->
+  <!-- ============================================================================================================================== -->
+  <Solution name="TfsBuild.NuGetter.Activities">
+    <AssemblyVersionPattern>2.1.0.0</AssemblyVersionPattern>
+    <AssemblyFileVersionPattern>2.1.j.b</AssemblyFileVersionPattern>
+    <AssemblyTitlePattern>NuGetter Custom Build Activity v2.0 built on $SDATE</AssemblyTitlePattern>
+    <AssemblyInformationalVersionPattern>Built $BNAME on $UTIME by $REQBY</AssemblyInformationalVersionPattern>
+    <AssemblyCompanyPattern>Mark Nichols</AssemblyCompanyPattern>
+    <AssemblyProductPattern>TfsBuild.NuGetter.Activities</AssemblyProductPattern>
+    <AssemblyCopyrightPattern>Copyright © Mark Nichols $YYYY</AssemblyCopyrightPattern>
+  </Solution>
+  <Solution name="Default">
+    <AssemblyVersionPattern>1.0.2.0</AssemblyVersionPattern>
+    <AssemblyFileVersionPattern>1.0.j.b</AssemblyFileVersionPattern>
+  </Solution>
+</VersionSeed>

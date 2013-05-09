@@ -1,0 +1,64 @@
+﻿<GetApiKeyData>
+  <!-- Should Succeed -->
+  <PackTest>
+    <NuGetFilePath>C:\Nuget\NuGet.exe</NuGetFilePath>
+    <NuGetPackBasePath>C:\BuildFolder\PackFolder</NuGetPackBasePath>
+    <NuGetSpecFilePath>C:\BuildFolder\myproject.nuspec</NuGetSpecFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetVersion>1.2.3.4</NuGetVersion>
+  </PackTest>
+
+  <!-- Push Test Data -->
+  <PushTest>
+    <NuGetFilePath>C:\Nuget\NuGet.exe</NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey>C4E9B6FC-FFFF-FFFF-FFFF-7BFEF689B33C</ApiKey>
+  </PushTest>
+  <PushTest>
+    <NuGetFilePath></NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey>C4E9B6FC-FFFF-FFFF-FFFF-7BFEF689B33C</ApiKey>
+  </PushTest>
+  
+  <PushTest>
+    <NuGetFilePath>C:\Nuget\NuGet.exe</NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey></ApiKey>
+  </PushTest>
+  <PushTest>
+    <NuGetFilePath></NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey></ApiKey>
+  </PushTest>
+
+  <PushTest>
+    <NuGetFilePath>C:\Nuget\NuGet.exe</NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey>C4E9B6FC-FFFF-FFFF-FFFF-7BFEF689B33C</ApiKey>
+  </PushTest>
+  <PushTest>
+    <NuGetFilePath></NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey>C4E9B6FC-FFFF-FFFF-FFFF-7BFEF689B33C</ApiKey>
+  </PushTest>
+
+  <PushTest>
+    <NuGetFilePath>C:\Nuget\NuGet.exe</NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey></ApiKey>
+  </PushTest>
+  <PushTest>
+    <NuGetFilePath></NuGetFilePath>
+    <NuGetOutputPath>C:\BuildFolder\NuGetPackage</NuGetOutputPath>
+    <NuGetPushDestination>http://localhost/InternalNuget</NuGetPushDestination>
+    <ApiKey></ApiKey>
+  </PushTest>
+</GetApiKeyData>
+

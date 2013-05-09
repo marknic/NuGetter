@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+    This is the full list of elements that you can provide for a package.  Each one of these
+    will override the corresponding value in the build definition if it is included in the XML file.
+    If you leave out an element in the XML, then the value in the build definition will be used.
+    
+    The name attribute on the NuGetterPackage element is arbitrary and is only there for your benefit (keeping track of which is which). 
+    It has no bearing on the execution of the packaging process.  In fact, you can leave the attribute off if you wish.
+    
+    Required Element: NuSpecFilePath
+    The rest are optional
+    API Key and Source (Push destination) are taken from the build definition.  They cannot be overridden in the XML.
+    
+    <NuGetterPackage name="Package Name">
+      <NuSpecFilePath></NuSpecFilePath>
+      <AdditionalOptions></AdditionalOptions>
+      <BasePath></BasePath>
+      <InvokePowerShell>false</InvokePowerShell>
+      <InvokePush>false</InvokePush>
+      <OutputDirectory></OutputDirectory>
+      <PowerShellScriptPath></PowerShellScriptPath>
+      <PushDestination></PushDestination>
+      <Version></Version>
+    </NuGetterPackage>
+  -->
+<NuGetterPackages>
+  <NuGetterPackage name="Package 0">
+    <NuSpecFilePath>NuSpecFilePath0</NuSpecFilePath>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 1">
+    <NuSpecFilePath>NuSpecFilePath1</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions1</AdditionalOptions>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 2">
+    <AdditionalOptions>AdditionalOptions2</AdditionalOptions>
+    <BasePath>BasePath2</BasePath>
+  </NuGetterPackage>
+</NuGetterPackages>

@@ -1,0 +1,64 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="TfsBuild.NuGetter.Activities.Tests.InvokeNugetterPowerShellScriptWorkflow"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:tna="clr-namespace:TfsBuild.NuGetter.Activities;assembly=TfsBuild.NuGetter.Activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="DropFolder" Type="InArgument(x:String)" />
+    <x:Property Name="PowerShellScriptFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="PowerShellTestResult" Type="OutArgument(x:String)" />
+    <x:Property Name="BinariesFolder" Type="InArgument(x:String)" />
+    <x:Property Name="SourcesFolder" Type="InArgument(x:String)" />
+    <x:Property Name="NuGetPrePackageFolder" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>TfsBuild.NuGetter.Activities.Tests.InvokeNugetterPowerShellScriptWorkflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>TfsBuild.NuGetter.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>TfsBuild.NuGetter.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <tna:InvokeNugetterPowerShellScript BinariesFolder="[BinariesFolder]" DropFolder="[DropFolder]" sap2010:WorkflowViewState.IdRef="InvokeNugetterPowerShellScript_1" NuGetPrePackageFolder="[NuGetPrePackageFolder]" PowerShellScriptFilepath="[PowerShellScriptFilePath]" Result="[PowerShellTestResult]" SourcesFolder="[SourcesFolder]" sads:DebugSymbol.Symbol="d40BQzpcX1Rmc1Byb2plY3RzVlMyMDEyXEJ1aWxkQWN0aXZpdGllc1xOdUdldHRlclxEZXZcVjIuMFxTb3VyY2VcVGZzQnVpbGQuTnVHZXR0ZXIuQWN0aXZpdGllcy5UZXN0c1xJbnZva2VOdWdldHRlclBvd2VyU2hlbGxTY3JpcHRXb3JrZmxvdy54YW1sBzoDOoEDAgEBOlQ6YgIBDDq6AjrLAgIBCjo2OkgCAQg6vAE61QECAQY6kwI6qwICAQQ67wE6iwICAQI=" />
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InvokeNugetterPowerShellScript_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="TfsBuild.NuGetter.Activities.Tests.InvokeNugetterPowerShellScriptWorkflow_1" sap:VirtualizedContainerService.HintSize="240,102" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+    This is the full list of elements that you can provide for a package.  Each one of these
+    will override the corresponding value in the build definition if it is included in the XML file.
+    If you leave out an element in the XML, then the value in the build definition will be used.
+    
+    The name attribute on the NuGetterPackage element is arbitrary and is only there for your benefit (keeping track of which is which). 
+    It has no bearing on the execution of the packaging process.  In fact, you can leave the attribute off if you wish.
+    
+    Required Element: NuSpecFilePath
+    The rest are optional
+    API Key and Source (Push destination) are taken from the build definition.  They cannot be overridden in the XML.
+    
+    <NuGetterPackage name="Package Name">
+      <NuSpecFilePath></NuSpecFilePath>
+      <AdditionalOptions></AdditionalOptions>
+      <BasePath></BasePath>
+      <InvokePowerShell>false</InvokePowerShell>
+      <InvokePush>false</InvokePush>
+      <OutputDirectory></OutputDirectory>
+      <PowerShellScriptPath></PowerShellScriptPath>
+      <PushDestination></PushDestination>
+      <Version></Version>
+    </NuGetterPackage>
+  -->
+<NuGetterPackages>
+  <NuGetterPackage name="Package 0">
+    <NuSpecFilePath>NuSpecFilePath0</NuSpecFilePath>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 1">
+    <NuSpecFilePath>NuSpecFilePath1</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions1</AdditionalOptions>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 2">
+    <NuSpecFilePath>NuSpecFilePath2</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions2</AdditionalOptions>
+    <BasePath>BasePath2</BasePath>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 3">
+    <NuSpecFilePath>NuSpecFilePath3</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions3</AdditionalOptions>
+    <BasePath>BasePath3</BasePath>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 4">
+    <NuSpecFilePath>NuSpecFilePath4</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions4</AdditionalOptions>
+    <BasePath>BasePath4</BasePath>
+    <InvokePowerShell>false</InvokePowerShell>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 5">
+    <NuSpecFilePath>NuSpecFilePath5</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions5</AdditionalOptions>
+    <BasePath>BasePath5</BasePath>
+    <InvokePowerShell>false</InvokePowerShell>
+    <InvokePush>false</InvokePush>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 6">
+    <NuSpecFilePath>NuSpecFilePath6</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions6</AdditionalOptions>
+    <BasePath>BasePath6</BasePath>
+    <InvokePowerShell>false</InvokePowerShell>
+    <InvokePush>false</InvokePush>
+    <OutputDirectory>OutputDirectory6</OutputDirectory>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 7">
+    <NuSpecFilePath>NuSpecFilePath7</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions7</AdditionalOptions>
+    <BasePath>BasePath7</BasePath>
+    <InvokePowerShell>false</InvokePowerShell>
+    <InvokePush>false</InvokePush>
+    <OutputDirectory>OutputDirectory7</OutputDirectory>
+    <PowerShellScriptPath>PowerShellScriptPath7</PowerShellScriptPath>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 8">
+    <NuSpecFilePath>NuSpecFilePath8</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions8</AdditionalOptions>
+    <BasePath>BasePath8</BasePath>
+    <InvokePowerShell>false</InvokePowerShell>
+    <InvokePush>false</InvokePush>
+    <OutputDirectory>OutputDirectory8</OutputDirectory>
+    <PowerShellScriptPath>PowerShellScriptPath8</PowerShellScriptPath>
+    <PushDestination>PushDestination8</PushDestination>
+  </NuGetterPackage>
+  <NuGetterPackage name="Package 9">
+    <NuSpecFilePath>NuSpecFilePath9</NuSpecFilePath>
+    <AdditionalOptions>AdditionalOptions9</AdditionalOptions>
+    <BasePath>BasePath9</BasePath>
+    <InvokePowerShell>false</InvokePowerShell>
+    <InvokePush>false</InvokePush>
+    <OutputDirectory>OutputDirectory9</OutputDirectory>
+    <PowerShellScriptPath>PowerShellScriptPath9</PowerShellScriptPath>
+    <PushDestination>PushDestination9</PushDestination>
+    <Version>Version9</Version>
+  </NuGetterPackage>
+</NuGetterPackages>

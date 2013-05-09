@@ -1,0 +1,4 @@
+﻿This file holds no valid api key:
+
+{E7C9B319-3FE8-47E9-A187-BE8725E5A60}
+

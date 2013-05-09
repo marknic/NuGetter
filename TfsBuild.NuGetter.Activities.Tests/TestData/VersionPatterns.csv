@@ -1,0 +1,13 @@
+VersionPattern, ExpectedResult
+9.8.7.6, true
+9.8.7, true
+9.8, true
+9, true
+9.8.j.b, true
+9.8.j, true
+9.8.7.*, true
+9.8.7.6.5, false
+9.8.*.5, false
+1.2.3.456, true
+8.3-beta, true
+2.3345.6079, true

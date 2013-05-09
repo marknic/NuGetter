@@ -1,0 +1,9 @@
+VersionPattern,ExpectedResult
+1.2,1.2
+"1.2.3","1.2.3"
+1.2.3.4,1.2.3.4
+1.2.3.4-beta,1.2.3.4-beta
+1.2.3-beta,1.2.3-beta
+1.2.123-beta,1.2.123-beta
+1.2.123-,1.2.123-
+1.yy.yyyy-prerelease,1.13.2013-prerelease
