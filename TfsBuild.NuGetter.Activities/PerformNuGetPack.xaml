@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="TfsBuild.NuGetter.Activities.PerformNuGetPack" local:PerformNuGetPack.AdditionalOptions="[String.Empty]"
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="TfsBuild.NuGetter.Activities.PerformNuGetPack" local:PerformNuGetPack.AdditionalOptions="[String.Empty]" local:PerformNuGetPack.SwitchTfsService="False"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:local="clr-namespace:TfsBuild.NuGetter.Activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -94,6 +94,7 @@
         <RequiredArgumentAttribute />
       </x:Property.Attributes>
     </x:Property>
+    <x:Property Name="SwitchTfsService" Type="InArgument(x:Boolean)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -168,7 +169,15 @@
     <local:SummarizeProperties AdditionalOptions="[AdditionalOptions]" ApiKey="[ApiKey]" BasePath="[BasePath]" sap2010:WorkflowViewState.IdRef="SummarizeProperties_1" NuGetExeFilePath="[NuGetExeFilePath]" NuSpecFilePath="[NuSpecFilePath]" OutputDirectory="[OutputDirectory]" PowerShellScriptPath="[PowerShellScriptPath]" PushDestination="[PushDestination]" SwitchInvokePowerShell="[SwitchInvokePowerShell]" SwitchInvokePush="[SwitchInvokePush]" Version="[Version]" />
     <Sequence DisplayName="Validate Parameters" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <Sequence DisplayName="Initialize" sap2010:WorkflowViewState.IdRef="Sequence_1">
-        <Assign x:TypeArguments="x:String" DisplayName="NuGetterVDropLocation" sap2010:WorkflowViewState.IdRef="Assign`1_1" mtbwt:BuildTrackingParticipant.Importance="Low" To="[NuGetterVDropLocation]" Value="[BuildDetail.DropLocation]" />
+        <If Condition="[SwitchTfsService]" sap2010:WorkflowViewState.IdRef="If_17">
+          <If.Then>
+            <Assign x:TypeArguments="x:String" DisplayName="NuGetterVDropLocation" sap2010:WorkflowViewState.IdRef="Assign`1_8" mtbwt:BuildTrackingParticipant.Importance="Low" To="[NuGetterVDropLocation]" Value="[BuildDirectory]" />
+          </If.Then>
+          <If.Else>
+            <Assign x:TypeArguments="x:String" DisplayName="NuGetterVDropLocation" sap2010:WorkflowViewState.IdRef="Assign`1_9" mtbwt:BuildTrackingParticipant.Importance="Low" To="[NuGetterVDropLocation]" Value="[BuildDetail.DropLocation]" />
+          </If.Else>
+        </If>
+        <mtbwa:WriteBuildMessage sap2010:WorkflowViewState.IdRef="WriteBuildMessage_5" Importance="[Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High]" Message="[String.Format(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; NuGetterVDropLocation: {0}&quot;, NuGetterVDropLocation)]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" />
         <Assign DisplayName="Assume do not do prepackaging" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Boolean">[NuGetterVDoPrePackaging]</OutArgument>
@@ -290,26 +299,24 @@
                     </Sequence.Variables>
                     <mtbwa:WriteBuildMessage sap2010:WorkflowViewState.IdRef="WriteBuildMessage_3" Importance="[Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High]" Message="[String.Format(&quot;Getting the NuGet file from source control (NuGetExeFilePath): {0}&quot;, NuGetExeFilePath)]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" />
                     <local:GetFile BuildDirectory="[BuildDirectory]" DestinationSubfolderName="NuGetExe" DisplayName="GetFile to NuGetterVNuGetExeConvertedFilePath" FileToGet="[NuGetExeFilePath]" FullPathToFile="[NuGetterVNuGetExeConvertedFilePath]" sap2010:WorkflowViewState.IdRef="GetFile_2" Workspace="[Workspace]" />
-                    <Assign DisplayName="Get source directory where NuGet.exe lives">
+                    <Assign DisplayName="Get source directory where NuGet.exe lives" sap2010:WorkflowViewState.IdRef="Assign_7">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[NuGetterVConfig]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">[Path.GetDirectoryName(NuGetExeFilePath)]</InArgument>
                       </Assign.Value>
-                      <sap2010:WorkflowViewState.IdRef>Assign_7</sap2010:WorkflowViewState.IdRef>
                     </Assign>
-                    <Assign DisplayName="Create source control path to possible config file">
+                    <Assign DisplayName="Create source control path to possible config file" sap2010:WorkflowViewState.IdRef="Assign_8">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[NuGetterVConfig]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
                         <InArgument x:TypeArguments="x:String">[Path.Combine(NuGetterVConfig, "NuGet.Config")]</InArgument>
                       </Assign.Value>
-                      <sap2010:WorkflowViewState.IdRef>Assign_8</sap2010:WorkflowViewState.IdRef>
                     </Assign>
-                    <local:GetFile BuildDirectory="[BuildDirectory]" DestinationSubfolderName="NuGetExe" DisplayName="GetFile NuGet.Config if it exists" FileToGet="[NuGetterVConfig]" FullPathToFile="[NuGetterVNuGetConfigConvertedFilePath]" Workspace="[Workspace]" sap2010:WorkflowViewState.IdRef="GetFile_4" />
-                    <mtbwa:WriteBuildMessage Importance="[Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High]" Message="[String.Format(&quot;NuGet Config file (NuGetterVNuGetConfigConvertedFilePath): {0}&quot;, NuGetterVNuGetConfigConvertedFilePath)]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" sap2010:WorkflowViewState.IdRef="WriteBuildMessage_4" />
+                    <local:GetFile BuildDirectory="[BuildDirectory]" DestinationSubfolderName="NuGetExe" DisplayName="GetFile NuGet.Config if it exists" FileToGet="[NuGetterVConfig]" FullPathToFile="[NuGetterVNuGetConfigConvertedFilePath]" sap2010:WorkflowViewState.IdRef="GetFile_4" Workspace="[Workspace]" />
+                    <mtbwa:WriteBuildMessage sap2010:WorkflowViewState.IdRef="WriteBuildMessage_4" Importance="[Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High]" Message="[String.Format(&quot;NuGet Config file (NuGetterVNuGetConfigConvertedFilePath): {0}&quot;, NuGetterVNuGetConfigConvertedFilePath)]" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
@@ -387,15 +394,18 @@
         </Sequence>
       </If.Then>
     </If>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="SummarizeProperties_1" sap:VirtualizedContainerService.HintSize="1594,22" />
-      <sap2010:ViewStateData Id="Assign`1_1" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="778,346">
+      <sap2010:ViewStateData Id="SummarizeProperties_1" sap:VirtualizedContainerService.HintSize="1593.6,22.4" />
+      <sap2010:ViewStateData Id="Assign`1_8" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="Assign`1_9" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="If_17" sap:VirtualizedContainerService.HintSize="464,211.2" />
+      <sap2010:ViewStateData Id="WriteBuildMessage_5" sap:VirtualizedContainerService.HintSize="464,22.4" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="464,60.8" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="464,60.8" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="779.2,600">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -403,9 +413,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,208" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="778,356">
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="243.2,60.8" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,211.2" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="779.2,361.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -413,30 +423,30 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign`1_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="489,208" />
-      <sap2010:ViewStateData Id="GetFile_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="222,146">
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="243.2,60.8" />
+      <sap2010:ViewStateData Id="Assign`1_2" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="489.6,211.2" />
+      <sap2010:ViewStateData Id="GetFile_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="222.4,147.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="489,294" />
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="489,208" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="511,914">
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="243.2,60.8" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="489.6,297.6" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="243.2,60.8" />
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="489.6,211.2" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="512,924.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="778,1062" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="1594,1968">
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="779.2,1075.2" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="1593.6,2241.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -480,26 +490,26 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ViewStateData_10" sap:VirtualizedContainerService.HintSize="673,894" />
-      <sap2010:ViewStateData Id="PerformPrePackage_1" sap:VirtualizedContainerService.HintSize="1594,22" />
-      <sap2010:ViewStateData Id="Assign`1_3" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="WriteBuildMessage_3" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="GetFile_2" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="GetFile_4" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="WriteBuildMessage_4" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="264,532">
+      <sap2010:ViewStateData Id="PerformPrePackage_1" sap:VirtualizedContainerService.HintSize="1593.6,22.4" />
+      <sap2010:ViewStateData Id="Assign`1_3" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="WriteBuildMessage_3" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
+      <sap2010:ViewStateData Id="GetFile_2" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="243.2,60.8" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="243.2,60.8" />
+      <sap2010:ViewStateData Id="GetFile_4" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
+      <sap2010:ViewStateData Id="WriteBuildMessage_4" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="265.6,536">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign`1_4" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Assign`1_5" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="464,208" />
-      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="753,680" />
-      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="1447,828" />
+      <sap2010:ViewStateData Id="Assign`1_4" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="Assign`1_5" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="464,211.2" />
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="753.6,686.4" />
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="1447.2,836.8" />
       <sap2010:ViewStateData Id="CreateFolder_1" sap:VirtualizedContainerService.HintSize="1447,22" />
       <sap2010:ViewStateData Id="CreateFolder_2" sap:VirtualizedContainerService.HintSize="1447,22" />
       <sap2010:ViewStateData Id="CallNuGetPackageCommandLine_1" sap:VirtualizedContainerService.HintSize="1447,22" />
@@ -542,14 +552,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="If_15" sap:VirtualizedContainerService.HintSize="1447,1420" />
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="1469,2598">
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="1468.8,2608">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="1594,2746">
+      <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="1593.6,2758.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -557,14 +567,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="1616,5002">
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="1616,5289.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TfsBuild.NuGetter.Activities.PerformNuGetPack_1" sap:VirtualizedContainerService.HintSize="1656,5082" />
+      <sap2010:ViewStateData Id="TfsBuild.NuGetter.Activities.PerformNuGetPack_1" sap:VirtualizedContainerService.HintSize="1656,5369.6" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

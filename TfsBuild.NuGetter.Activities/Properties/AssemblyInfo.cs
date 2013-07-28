@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NuGetter Custom Build Activity v2.0 built on 1/16/2013")]
+[assembly: AssemblyTitle("NuGetter Custom Build Activity v2.2 built on 7/28/2013")]
 [assembly: AssemblyDescription("Custom TFS 2010 NuGet build workflow activities.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MarkNic")]
@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.13016.9")]
+[assembly: AssemblyVersion("2.2.0.0")]
+[assembly: AssemblyFileVersion("2.2.13209.7")]
 
-[assembly: AssemblyInformationalVersion("Built TfsBuild.NuGetter.Activities - 2.0 on 1/16/2013 4:39:31 PM by marknic")]
+[assembly: AssemblyInformationalVersion("Built TfsBuild.NuGetter.Activities - 2.2 on 7/28/2013 11:44:31 PM by marknic")]
